@@ -25,7 +25,6 @@
    ivy/random.rst
    ivy/searching.rst
    ivy/set.rst
-   ivy/sorting.rst
    ivy/statistical.rst
    ivy/utility.rst
 
