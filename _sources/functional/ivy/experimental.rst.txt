@@ -48,6 +48,7 @@ Experimental
    experimental/binarizer.rst
    experimental/conj.rst
    experimental/ldexp.rst
+   experimental/frexp.rst
    experimental/isin.rst
    experimental/max_pool1d.rst
    experimental/max_pool2d.rst
@@ -65,7 +66,8 @@ Experimental
    experimental/interp.rst
    experimental/compute_weight_mat.rst
    experimental/interpolate.rst
-   experimental/padding_ceil_mode.rst
+   experimental/adaptive_avg_pool1d.rst
+   experimental/adaptive_avg_pool2d.rst
    experimental/is_native_dtype.rst
    experimental/eigh_tridiagonal.rst
    experimental/diagflat.rst
@@ -74,6 +76,7 @@ Experimental
    experimental/eig.rst
    experimental/eigvals.rst
    experimental/adjoint.rst
+   experimental/multi_dot.rst
    experimental/l2_normalize.rst
    experimental/instance_norm.rst
    experimental/lp_normalize.rst
@@ -121,10 +124,12 @@ Experimental
    experimental/quantile.rst
    experimental/corrcoef.rst
    experimental/nanmedian.rst
+   experimental/bincount.rst
    experimental/logit.rst
    experimental/prelu.rst
    experimental/thresholded_relu.rst
    experimental/relu6.rst
+   experimental/batch_norm.rst
    experimental/binary_cross_entropy_with_logits.rst
    experimental/SparseArray.rst
    experimental/NativeSparseArray.rst
