@@ -18,6 +18,7 @@ Experimental
    experimental/thresholded_relu.rst
    experimental/relu6.rst
    experimental/batch_norm.rst
+   experimental/logsigmoid.rst
    experimental/msort.rst
    experimental/lexsort.rst
    experimental/median.rst

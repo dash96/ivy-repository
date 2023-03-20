@@ -781,7 +781,39 @@
             <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
             <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">,</span>
             <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="_ArrayWithActivationsExperimental.logsigmoid"><a class="viewcode-back" href="../../../../data_classes/array/experimental.html#ivy.array.experimental._ArrayWithActivationsExperimental.logsigmoid">[docs]</a>    <span class="k">def</span> <span class="nf">logsigmoid</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Array instance method variant of ivy.logsigmoid. This method</span>
+<span class="sd">        simply wraps the function, and so the docstring for ivy.logsigmoid</span>
+<span class="sd">        also applies to this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            Input array.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            Array with same shape as input with Log-sigmoid applied to every element.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([-1., 2., 4., -10.])</span>
+<span class="sd">        &gt;&gt;&gt; z = x.logsigmoid()</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        ivy.array([ -1.31326175,  -0.126928  ,  -0.01814993, -10.00004578])</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([-2.5, 1., 0, 4.5])</span>
+<span class="sd">        &gt;&gt;&gt; z = x.logsigmoid())</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        ivy.array([-2.57888985, -0.31326169, -0.69314718, -0.01104775])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">logsigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span></div></div>
 </pre></div>
 
             </article>

@@ -855,6 +855,53 @@
         <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">,</span>
         <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
     <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="logsigmoid"><a class="viewcode-back" href="../../../../../functional/ivy/experimental/logsigmoid/logsigmoid_functional.html#ivy.functional.ivy.experimental.logsigmoid">[docs]</a><span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="k">def</span> <span class="nf">logsigmoid</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Applies element-wise Log-sigmoid of x i.e. logsigmoid(x) = log(1 / (1 + exp(-x)).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input</span>
+<span class="sd">        Input array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Array with same shape as input with Log-sigmoid applied to every element.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([-1., 0., 1.])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.logsigmoid()</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([-1.31326175, -0.69314718, -0.31326169])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1.5, 0.7, -2.4])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.logsigmoid()</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([-0.20141329, -0.40318608, -2.48683619])</span>
+
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.0, -1.2]), b=ivy.array([0.2, 0.6]))</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.logsigmoid(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(x)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([-0.31326169, -1.46328247]),</span>
+<span class="sd">        b: ivy.array([-0.59813893, -0.43748799])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">logsigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
 </pre></div>
 
             </article>
