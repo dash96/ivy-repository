@@ -198,10 +198,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -466,7 +462,6 @@ document.write(`
                   
   <h1>Source code for ivy_tests.test_ivy.helpers.function_testing</h1><div class="highlight"><pre>
 <span></span><span class="c1"># global</span>
-<span class="c1"># flake8: noqa</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
@@ -477,7 +472,7 @@ document.write(`
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">jsonpickle</span>
-<span class="k">except</span><span class="p">:</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
     <span class="k">pass</span>
 
 
@@ -494,7 +489,7 @@ document.write(`
     <span class="k">elif</span> <span class="n">frontend</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;torch&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">frontend</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="o">==</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">frontend</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">__version__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="o">==</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">frontend</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">__version__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -531,18 +526,10 @@ document.write(`
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="nb">globals</span>
 
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;IVY_ROOT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;.ivy&quot;</span>
-    <span class="kn">import</span> <span class="nn">ivy.compiler.compiler</span> <span class="k">as</span> <span class="nn">ic</span>
-<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-    <span class="n">ic</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">SimpleNamespace</span><span class="p">()</span>
-    <span class="n">ic</span><span class="o">.</span><span class="n">compile</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">func</span>
-
-
 <span class="c1"># Temporary (.so) configuration</span>
 <div class="viewcode-block" id="compiled_if_required"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.compiled_if_required">[docs]</a><span class="k">def</span> <span class="nf">compiled_if_required</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">test_compile</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">test_compile</span><span class="p">:</span>
-        <span class="n">fn</span> <span class="o">=</span> <span class="n">ic</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fn</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fn</span></div>
 
 
@@ -588,7 +575,40 @@ document.write(`
     <span class="n">is_torch_native_array</span> <span class="o">=</span> <span class="n">empty_func</span>
 
 
-<span class="c1"># Function testing</span>
+<span class="c1"># Ivy Function testing ##########################</span>
+
+<span class="c1"># Test Function Helpers ###############</span>
+
+
+<span class="k">def</span> <span class="nf">_find_instance_in_args</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">array_indices</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the first element in the arguments that is considered to be an</span>
+<span class="sd">    instance of Array or Container class.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args</span>
+<span class="sd">        Arguments to iterate over</span>
+<span class="sd">    array_indices</span>
+<span class="sd">        Indices of arrays that exists in the args</span>
+<span class="sd">    mask</span>
+<span class="sd">        Boolean mask for whether the corrseponding element in (args) has a</span>
+<span class="sd">        generated test_flags.native_array as False or test_flags.container as</span>
+<span class="sd">        true</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        First found instance in the arguments and the updates arguments not</span>
+<span class="sd">        including the instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">instance_idx</span> <span class="o">=</span> <span class="n">array_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">index_nest</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">instance_idx</span><span class="p">)</span>
+    <span class="n">new_args</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">to_mutable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ivy</span><span class="o">.</span><span class="n">prune_nest_at_index</span><span class="p">(</span><span class="n">new_args</span><span class="p">,</span> <span class="n">instance_idx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">instance</span><span class="p">,</span> <span class="n">new_args</span>
 
 
 <div class="viewcode-block" id="test_function"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.test_function">[docs]</a><span class="k">def</span> <span class="nf">test_function</span><span class="p">(</span>
@@ -699,24 +719,30 @@ document.write(`
         <span class="n">num_positional_args</span><span class="o">=</span><span class="n">test_flags</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">all_as_kwargs_np</span>
     <span class="p">)</span>
 
-    <span class="c1"># extract all arrays from the arguments and keyword arguments</span>
-    <span class="n">arg_np_vals</span><span class="p">,</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">c_arg_vals</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">args_np</span><span class="p">)</span>
-    <span class="n">kwarg_np_vals</span><span class="p">,</span> <span class="n">kwargs_idxs</span><span class="p">,</span> <span class="n">c_kwarg_vals</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">kwargs_np</span><span class="p">)</span>
+    <span class="c1"># Extract all arrays from the arguments and keyword arguments</span>
+    <span class="n">arg_np_arrays</span><span class="p">,</span> <span class="n">arrays_args_indices</span><span class="p">,</span> <span class="n">n_args_arrays</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">args_np</span><span class="p">)</span>
+    <span class="n">kwarg_np_arrays</span><span class="p">,</span> <span class="n">arrays_kwargs_indices</span><span class="p">,</span> <span class="n">n_kwargs_arrays</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span>
+        <span class="n">kwargs_np</span>
+    <span class="p">)</span>
 
-    <span class="c1"># make all lists equal in length</span>
-    <span class="n">num_arrays</span> <span class="o">=</span> <span class="n">c_arg_vals</span> <span class="o">+</span> <span class="n">c_kwarg_vals</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_dtypes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_arrays</span><span class="p">:</span>
-        <span class="n">input_dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_arrays</span><span class="p">)]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_arrays</span><span class="p">:</span>
-        <span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_arrays</span><span class="p">)]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_arrays</span><span class="p">:</span>
-        <span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_arrays</span><span class="p">)</span>
+    <span class="c1"># Make all array-specific test flags and dtypes equal in length</span>
+    <span class="n">total_num_arrays</span> <span class="o">=</span> <span class="n">n_args_arrays</span> <span class="o">+</span> <span class="n">n_kwargs_arrays</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_dtypes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">total_num_arrays</span><span class="p">:</span>
+        <span class="n">input_dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_num_arrays</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">total_num_arrays</span><span class="p">:</span>
+        <span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_num_arrays</span><span class="p">)</span>
         <span class="p">]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">container</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_arrays</span><span class="p">:</span>
-        <span class="n">test_flags</span><span class="o">.</span><span class="n">container</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_flags</span><span class="o">.</span><span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_arrays</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">total_num_arrays</span><span class="p">:</span>
+        <span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_num_arrays</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">container</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">total_num_arrays</span><span class="p">:</span>
+        <span class="n">test_flags</span><span class="o">.</span><span class="n">container</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">test_flags</span><span class="o">.</span><span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_num_arrays</span><span class="p">)</span>
+        <span class="p">]</span>
 
-    <span class="c1"># update variable flags to be compatible with float dtype and with_out args</span>
+    <span class="c1"># Update variable flags to be compatible with float dtype and with_out args</span>
     <span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">v</span> <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_float_dtype</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">with_out</span> <span class="k">else</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_flags</span><span class="o">.</span><span class="n">as_variable</span><span class="p">,</span> <span class="n">input_dtypes</span><span class="p">)</span>
@@ -728,94 +754,86 @@ document.write(`
         <span class="ow">not</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="p">)</span>
 
-    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">gradient_incompatible_function</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">):</span>
-        <span class="k">return</span>
-
-    <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">num_arg_vals</span><span class="p">,</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">kwargs_idxs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+    <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
         <span class="n">args_np</span><span class="o">=</span><span class="n">args_np</span><span class="p">,</span>
-        <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_vals</span><span class="p">,</span>
-        <span class="n">args_idxs</span><span class="o">=</span><span class="n">args_idxs</span><span class="p">,</span>
+        <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_arrays</span><span class="p">,</span>
+        <span class="n">args_idxs</span><span class="o">=</span><span class="n">arrays_args_indices</span><span class="p">,</span>
         <span class="n">kwargs_np</span><span class="o">=</span><span class="n">kwargs_np</span><span class="p">,</span>
-        <span class="n">kwarg_np_vals</span><span class="o">=</span><span class="n">kwarg_np_vals</span><span class="p">,</span>
-        <span class="n">kwargs_idxs</span><span class="o">=</span><span class="n">kwargs_idxs</span><span class="p">,</span>
+        <span class="n">kwarg_np_vals</span><span class="o">=</span><span class="n">kwarg_np_arrays</span><span class="p">,</span>
+        <span class="n">kwargs_idxs</span><span class="o">=</span><span class="n">arrays_kwargs_indices</span><span class="p">,</span>
         <span class="n">input_dtypes</span><span class="o">=</span><span class="n">input_dtypes</span><span class="p">,</span>
         <span class="n">test_flags</span><span class="o">=</span><span class="n">test_flags</span><span class="p">,</span>
         <span class="n">on_device</span><span class="o">=</span><span class="n">on_device</span><span class="p">,</span>
     <span class="p">)</span>
 
+    <span class="c1"># If function doesn&#39;t have an out argument but an out argument is given</span>
+    <span class="c1"># or a test with out flag is True</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;out&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">or</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">with_out</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;out&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span>
-        <span class="n">fn</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
     <span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Function </span><span class="si">{</span><span class="n">fn_name</span><span class="si">}</span><span class="s2"> does not have an out parameter&quot;</span><span class="p">)</span>
-    <span class="c1"># run either as an instance method or from the API directly</span>
+
+    <span class="c1"># Run either as an instance method or from the API directly</span>
     <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">instance_method</span><span class="p">:</span>
-        <span class="n">is_instance</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">array_or_container_mask</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span><span class="ow">not</span> <span class="n">native_flag</span><span class="p">)</span> <span class="ow">or</span> <span class="n">container_flag</span>
             <span class="k">for</span> <span class="n">native_flag</span><span class="p">,</span> <span class="n">container_flag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
                 <span class="n">test_flags</span><span class="o">.</span><span class="n">native_arrays</span><span class="p">,</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">container</span>
             <span class="p">)</span>
         <span class="p">]</span>
-        <span class="n">arg_is_instance</span> <span class="o">=</span> <span class="n">is_instance</span><span class="p">[:</span><span class="n">num_arg_vals</span><span class="p">]</span>
-        <span class="n">kwarg_is_instance</span> <span class="o">=</span> <span class="n">is_instance</span><span class="p">[</span><span class="n">num_arg_vals</span><span class="p">:]</span>
-        <span class="k">if</span> <span class="n">arg_is_instance</span> <span class="ow">and</span> <span class="nb">max</span><span class="p">(</span><span class="n">arg_is_instance</span><span class="p">):</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arg_is_instance</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">a</span><span class="p">:</span>
-                    <span class="k">break</span>
-            <span class="n">instance_idx</span> <span class="o">=</span> <span class="n">args_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">instance</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">index_nest</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">instance_idx</span><span class="p">)</span>
-            <span class="n">args</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">to_mutable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="n">ivy</span><span class="o">.</span><span class="n">prune_nest_at_index</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">instance_idx</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kwarg_is_instance</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">a</span><span class="p">:</span>
-                    <span class="k">break</span>
-            <span class="n">instance_idx</span> <span class="o">=</span> <span class="n">kwargs_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">instance</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">index_nest</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">instance_idx</span><span class="p">)</span>
-            <span class="n">kwargs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">to_mutable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="n">ivy</span><span class="o">.</span><span class="n">prune_nest_at_index</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">instance_idx</span><span class="p">)</span>
+
+        <span class="c1"># Boolean mask for args and kwargs True if an entry&#39;s</span>
+        <span class="c1"># test Array flag is True or test Container flag is true</span>
+        <span class="n">args_instance_mask</span> <span class="o">=</span> <span class="n">array_or_container_mask</span><span class="p">[:</span><span class="n">total_num_arrays</span><span class="p">]</span>
+        <span class="n">kwargs_instance_mask</span> <span class="o">=</span> <span class="n">array_or_container_mask</span><span class="p">[</span><span class="n">total_num_arrays</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">args_instance_mask</span><span class="p">):</span>
+            <span class="n">instance</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">_find_instance_in_args</span><span class="p">(</span>
+                <span class="n">args</span><span class="p">,</span> <span class="n">arrays_args_indices</span><span class="p">,</span> <span class="n">args_instance_mask</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">kwargs_instance_mask</span><span class="p">):</span>
+            <span class="n">instance</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">_find_instance_in_args</span><span class="p">(</span>
+                <span class="n">kwargs</span><span class="p">,</span> <span class="n">arrays_kwargs_indices</span><span class="p">,</span> <span class="n">kwargs_instance_mask</span>
+            <span class="p">)</span>
+
         <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">test_compile</span><span class="p">:</span>
-            <span class="n">instance_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span>
+            <span class="n">target_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span>
                 <span class="n">fn_name</span>
             <span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">instance_func</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">fn_name</span><span class="p">)</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
-            <span class="n">instance_func</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-            <span class="n">test_compile</span><span class="o">=</span><span class="n">test_flags</span><span class="o">.</span><span class="n">test_compile</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span>
+            <span class="n">target_fn</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">fn_name</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">ret</span><span class="p">,</span> <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
-            <span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">test_compile</span><span class="o">=</span><span class="n">test_flags</span><span class="o">.</span><span class="n">test_compile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span>
-    <span class="c1"># assert idx of return if the idx of the out array provided</span>
+        <span class="n">target_fn</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span>
+
+    <span class="n">ret_from_target</span><span class="p">,</span> <span class="n">ret_np_flat_from_target</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
+        <span class="n">target_fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">test_compile</span><span class="o">=</span><span class="n">test_flags</span><span class="o">.</span><span class="n">test_compile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Assert indices of return if the indices of the out array provided</span>
     <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">with_out</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">test_compile</span><span class="p">:</span>
         <span class="n">test_ret</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">ret</span><span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="s2">&quot;out_index&quot;</span><span class="p">)]</span>
+            <span class="n">ret_from_target</span><span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="s2">&quot;out_index&quot;</span><span class="p">)]</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="s2">&quot;out_index&quot;</span><span class="p">)</span>
-            <span class="k">else</span> <span class="n">ret</span>
+            <span class="k">else</span> <span class="n">ret_from_target</span>
         <span class="p">)</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
             <span class="n">test_ret</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">,</span> <span class="n">to_mutable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">instance_method</span><span class="p">:</span>
-            <span class="n">ret</span><span class="p">,</span> <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
+            <span class="n">ret_from_target</span><span class="p">,</span> <span class="n">ret_np_flat_from_target</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
                 <span class="n">instance</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">fn_name</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">ret</span><span class="p">,</span> <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
+            <span class="n">ret_from_target</span><span class="p">,</span> <span class="n">ret_np_flat_from_target</span> <span class="o">=</span> <span class="n">get_ret_and_flattened_np_array</span><span class="p">(</span>
                 <span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
             <span class="p">)</span>
         <span class="n">test_ret</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">ret</span><span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="s2">&quot;out_index&quot;</span><span class="p">)]</span>
+            <span class="n">ret_from_target</span><span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="s2">&quot;out_index&quot;</span><span class="p">)]</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">fn_name</span><span class="p">],</span> <span class="s2">&quot;out_index&quot;</span><span class="p">)</span>
-            <span class="k">else</span> <span class="n">ret</span>
+            <span class="k">else</span> <span class="n">ret_from_target</span>
         <span class="p">)</span>
         <span class="k">assert</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_any</span><span class="p">(</span>
             <span class="n">ivy</span><span class="o">.</span><span class="n">nested_multi_map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">test_ret</span><span class="p">,</span> <span class="n">out</span><span class="p">]),</span>
@@ -836,11 +854,11 @@ document.write(`
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args_np</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">arg_np_vals</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args_idxs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">arg_np_arrays</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">arrays_args_indices</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwargs_np</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwargs_idxs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwarg_np_vals</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">arrays_kwargs_indices</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwarg_np_arrays</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">input_dtypes</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">test_flags</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">process</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jsonpickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">fn_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -857,19 +875,17 @@ document.write(`
             <span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
             <span class="k">raise</span> <span class="ne">Exception</span>
         <span class="n">ret_from_gt</span><span class="p">,</span> <span class="n">ret_np_from_gt_flat</span><span class="p">,</span> <span class="n">fw_list</span> <span class="o">=</span> <span class="n">ground_ret</span>
-
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ivy</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="n">ground_truth_backend</span><span class="p">)</span>
         <span class="n">ivy</span><span class="o">.</span><span class="n">set_default_device</span><span class="p">(</span><span class="n">on_device</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ivy</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
-            <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+            <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
                 <span class="n">args_np</span><span class="o">=</span><span class="n">args_np</span><span class="p">,</span>
-                <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_vals</span><span class="p">,</span>
-                <span class="n">args_idxs</span><span class="o">=</span><span class="n">args_idxs</span><span class="p">,</span>
+                <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_arrays</span><span class="p">,</span>
+                <span class="n">args_idxs</span><span class="o">=</span><span class="n">arrays_args_indices</span><span class="p">,</span>
                 <span class="n">kwargs_np</span><span class="o">=</span><span class="n">kwargs_np</span><span class="p">,</span>
-                <span class="n">kwargs_idxs</span><span class="o">=</span><span class="n">kwargs_idxs</span><span class="p">,</span>
-                <span class="n">kwarg_np_vals</span><span class="o">=</span><span class="n">kwarg_np_vals</span><span class="p">,</span>
+                <span class="n">kwargs_idxs</span><span class="o">=</span><span class="n">arrays_kwargs_indices</span><span class="p">,</span>
+                <span class="n">kwarg_np_vals</span><span class="o">=</span><span class="n">kwarg_np_arrays</span><span class="p">,</span>
                 <span class="n">input_dtypes</span><span class="o">=</span><span class="n">input_dtypes</span><span class="p">,</span>
                 <span class="n">test_flags</span><span class="o">=</span><span class="n">test_flags</span><span class="p">,</span>
                 <span class="n">on_device</span><span class="o">=</span><span class="n">on_device</span><span class="p">,</span>
@@ -907,38 +923,20 @@ document.write(`
         <span class="k">if</span> <span class="n">gt_returned_array</span><span class="p">:</span>
             <span class="n">ret_from_gt_device</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dev</span><span class="p">(</span><span class="n">ret_from_gt</span><span class="p">)</span>
         <span class="n">ivy</span><span class="o">.</span><span class="n">previous_backend</span><span class="p">()</span>
-    <span class="c1"># gradient test</span>
-    <span class="n">fw</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span>
+
+    <span class="c1"># Gradient test</span>
     <span class="k">if</span> <span class="p">(</span>
         <span class="n">test_flags</span><span class="o">.</span><span class="n">test_gradients</span>
-        <span class="ow">and</span> <span class="ow">not</span> <span class="n">fw</span> <span class="o">==</span> <span class="s2">&quot;numpy&quot;</span>
         <span class="ow">and</span> <span class="ow">not</span> <span class="n">instance_method</span>
         <span class="ow">and</span> <span class="s2">&quot;bool&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">input_dtypes</span>
         <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">is_complex_dtype</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">input_dtypes</span><span class="p">)</span>
     <span class="p">):</span>
-        <span class="k">if</span> <span class="n">fw</span> <span class="ow">in</span> <span class="n">fw_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span>
-                <span class="n">all_as_kwargs_np</span><span class="p">,</span>
-                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">fw_list</span><span class="p">[</span><span class="n">fw</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="p">):</span>
-                <span class="k">pass</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">gradient_test</span><span class="p">(</span>
-                    <span class="n">fn</span><span class="o">=</span><span class="n">fn_name</span><span class="p">,</span>
-                    <span class="n">all_as_kwargs_np</span><span class="o">=</span><span class="n">all_as_kwargs_np</span><span class="p">,</span>
-                    <span class="n">args_np</span><span class="o">=</span><span class="n">args_np</span><span class="p">,</span>
-                    <span class="n">kwargs_np</span><span class="o">=</span><span class="n">kwargs_np</span><span class="p">,</span>
-                    <span class="n">input_dtypes</span><span class="o">=</span><span class="n">input_dtypes</span><span class="p">,</span>
-                    <span class="n">test_flags</span><span class="o">=</span><span class="n">test_flags</span><span class="p">,</span>
-                    <span class="n">rtol_</span><span class="o">=</span><span class="n">rtol_</span><span class="p">,</span>
-                    <span class="n">atol_</span><span class="o">=</span><span class="n">atol_</span><span class="p">,</span>
-                    <span class="n">xs_grad_idxs</span><span class="o">=</span><span class="n">xs_grad_idxs</span><span class="p">,</span>
-                    <span class="n">ret_grad_idxs</span><span class="o">=</span><span class="n">ret_grad_idxs</span><span class="p">,</span>
-                    <span class="n">ground_truth_backend</span><span class="o">=</span><span class="n">ground_truth_backend</span><span class="p">,</span>
-                    <span class="n">on_device</span><span class="o">=</span><span class="n">on_device</span><span class="p">,</span>
-                <span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fw</span><span class="o">.</span><span class="n">backend</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fw_list</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span>
+            <span class="n">all_as_kwargs_np</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">fw_list</span><span class="p">[</span><span class="n">fw</span><span class="o">.</span><span class="n">backend</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+            <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">):</span>
             <span class="n">gradient_test</span><span class="p">(</span>
                 <span class="n">fn</span><span class="o">=</span><span class="n">fn_name</span><span class="p">,</span>
                 <span class="n">all_as_kwargs_np</span><span class="o">=</span><span class="n">all_as_kwargs_np</span><span class="p">,</span>
@@ -955,20 +953,23 @@ document.write(`
             <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">gt_returned_array</span><span class="p">:</span>
-        <span class="n">ret_device</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dev</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="n">ret_device</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dev</span><span class="p">(</span><span class="n">ret_from_target</span><span class="p">)</span>
 
         <span class="k">assert</span> <span class="p">(</span>
             <span class="n">ret_device</span> <span class="o">==</span> <span class="n">ret_from_gt_device</span>
-        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;ground truth backend (</span><span class="si">{</span><span class="n">ground_truth_backend</span><span class="si">}</span><span class="s2">) returned array on device </span><span class="si">{</span><span class="n">ret_from_gt_device</span><span class="si">}</span><span class="s2"> but target backend (</span><span class="si">{</span><span class="n">ivy</span><span class="o">.</span><span class="n">backend</span><span class="si">}</span><span class="s2">) returned array on device </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;ground truth backend (</span><span class="si">{</span><span class="n">ground_truth_backend</span><span class="si">}</span><span class="s2">) returned array on device &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ret_from_gt_device</span><span class="si">}</span><span class="s2"> but target backend (</span><span class="si">{</span><span class="n">ivy</span><span class="o">.</span><span class="n">backend</span><span class="si">}</span><span class="s2">) returned array on &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;device </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">assert</span> <span class="p">(</span>
             <span class="n">ret_device</span> <span class="o">==</span> <span class="n">on_device</span>
-        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;device is set to </span><span class="si">{</span><span class="n">on_device</span><span class="si">}</span><span class="s2">, but ground truth produced array on </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;device is set to </span><span class="si">{</span><span class="n">on_device</span><span class="si">}</span><span class="s2">, but ground truth &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;produced array on </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="c1"># assuming value test will be handled manually in the test function</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">test_values</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">return_flat_np_arrays</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ret_np_flat</span><span class="p">,</span> <span class="n">ret_np_from_gt_flat</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">,</span> <span class="n">ret_from_gt</span>
+            <span class="k">return</span> <span class="n">ret_np_flat_from_target</span><span class="p">,</span> <span class="n">ret_np_from_gt_flat</span>
+        <span class="k">return</span> <span class="n">ret_from_target</span><span class="p">,</span> <span class="n">ret_from_gt</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rtol_</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">rtol_</span> <span class="o">=</span> <span class="n">_get_framework_rtol</span><span class="p">(</span><span class="n">rtol_</span><span class="p">,</span> <span class="n">fw</span><span class="p">)</span>
@@ -977,7 +978,7 @@ document.write(`
 
     <span class="c1"># value test</span>
     <span class="n">value_test</span><span class="p">(</span>
-        <span class="n">ret_np_flat</span><span class="o">=</span><span class="n">ret_np_flat</span><span class="p">,</span>
+        <span class="n">ret_np_flat</span><span class="o">=</span><span class="n">ret_np_flat_from_target</span><span class="p">,</span>
         <span class="n">ret_np_from_gt_flat</span><span class="o">=</span><span class="n">ret_np_from_gt_flat</span><span class="p">,</span>
         <span class="n">rtol</span><span class="o">=</span><span class="n">rtol_</span><span class="p">,</span>
         <span class="n">atol</span><span class="o">=</span><span class="n">atol_</span><span class="p">,</span>
@@ -1027,6 +1028,8 @@ document.write(`
 <span class="sd">    ret_np</span>
 <span class="sd">        optional, return value from the Numpy function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frontend</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">frontend</span><span class="p">,</span> <span class="n">frontend_proc</span> <span class="o">=</span> <span class="n">frontend</span>
     <span class="k">assert</span> <span class="p">(</span>
         <span class="ow">not</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">with_out</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">inplace</span>
     <span class="p">),</span> <span class="s2">&quot;only one of with_out or with_inplace can be set as True&quot;</span>
@@ -1035,11 +1038,19 @@ document.write(`
     <span class="n">args_np</span><span class="p">,</span> <span class="n">kwargs_np</span> <span class="o">=</span> <span class="n">kwargs_to_args_n_kwargs</span><span class="p">(</span>
         <span class="n">num_positional_args</span><span class="o">=</span><span class="n">test_flags</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">all_as_kwargs_np</span>
     <span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">frontend</span><span class="p">:</span>
+        <span class="c1"># multiversion</span>
+        <span class="n">create_frontend_array</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;ivy.functional.frontends.</span><span class="si">{</span><span class="n">frontend</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">_frontend_array</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">create_frontend_array</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;ivy.functional.frontends.</span><span class="si">{</span><span class="n">frontend</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">_frontend_array</span>
 
     <span class="c1"># extract all arrays from the arguments and keyword arguments</span>
     <span class="n">arg_np_vals</span><span class="p">,</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">c_arg_vals</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">args_np</span><span class="p">)</span>
     <span class="n">kwarg_np_vals</span><span class="p">,</span> <span class="n">kwargs_idxs</span><span class="p">,</span> <span class="n">c_kwarg_vals</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">kwargs_np</span><span class="p">)</span>
-
     <span class="c1"># make all lists equal in length</span>
     <span class="n">num_arrays</span> <span class="o">=</span> <span class="n">c_arg_vals</span> <span class="o">+</span> <span class="n">c_kwarg_vals</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_dtypes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_arrays</span><span class="p">:</span>
@@ -1059,14 +1070,14 @@ document.write(`
 
     <span class="c1"># frontend function</span>
     <span class="c1"># parse function name and frontend submodules (jax.lax, jax.numpy etc.)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frontend</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">frontend</span><span class="p">,</span> <span class="n">frontend_proc</span> <span class="o">=</span> <span class="n">frontend</span>
+
     <span class="n">split_index</span> <span class="o">=</span> <span class="n">fn_tree</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
     <span class="n">frontend_submods</span><span class="p">,</span> <span class="n">fn_name</span> <span class="o">=</span> <span class="n">fn_tree</span><span class="p">[:</span><span class="n">split_index</span><span class="p">],</span> <span class="n">fn_tree</span><span class="p">[</span><span class="n">split_index</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span>
     <span class="n">function_module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">frontend_submods</span><span class="p">)</span>
     <span class="n">frontend_fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">function_module</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
 
-    <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+    <span class="c1"># apply test flags etc.</span>
+    <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
         <span class="n">args_np</span><span class="o">=</span><span class="n">args_np</span><span class="p">,</span>
         <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_vals</span><span class="p">,</span>
         <span class="n">args_idxs</span><span class="o">=</span><span class="n">args_idxs</span><span class="p">,</span>
@@ -1077,7 +1088,12 @@ document.write(`
         <span class="n">test_flags</span><span class="o">=</span><span class="n">test_flags</span><span class="p">,</span>
         <span class="n">on_device</span><span class="o">=</span><span class="n">on_device</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">args_ivy</span><span class="p">,</span> <span class="n">kwargs_ivy</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">args_to_ivy</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+        <span class="n">args_for_test</span><span class="p">,</span> <span class="n">kwargs_for_test</span> <span class="o">=</span> <span class="n">args_to_frontend</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">create_frontend_array</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">args_for_test</span><span class="p">,</span> <span class="n">kwargs_for_test</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">args_to_ivy</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="c1"># check and replace NativeClass object in arguments with ivy counterparts</span>
     <span class="kn">from</span> <span class="nn">ivy_tests.test_ivy.test_frontends.test_numpy</span> <span class="kn">import</span> <span class="n">convnumpy</span>
@@ -1114,64 +1130,119 @@ document.write(`
         <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;ivy.functional.frontends.jax&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
             <span class="s2">&quot;jax_enable_x64&quot;</span><span class="p">,</span> <span class="kc">True</span>
         <span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">get_frontend_ret</span><span class="p">(</span><span class="n">frontend_fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args_ivy</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_ivy</span><span class="p">)</span>
+
+    <span class="n">_as_ivy_arrays</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">get_frontend_ret</span><span class="p">(</span>
+        <span class="n">frontend_fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args_for_test</span><span class="p">,</span> <span class="n">as_ivy_arrays</span><span class="o">=</span><span class="n">_as_ivy_arrays</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_for_test</span>
+    <span class="p">)</span>
+
     <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">with_out</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">ret</span><span class="p">):</span>
             <span class="n">is_ret_tuple</span> <span class="o">=</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">is_ret_tuple</span> <span class="o">=</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">is_ret_tuple</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
-                <span class="n">ret</span><span class="p">,</span>
-                <span class="k">lambda</span> <span class="n">_x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span> <span class="k">else</span> <span class="n">_x</span><span class="p">,</span>
-                <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">ret</span><span class="p">):</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_ret_tuple</span><span class="p">:</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
+                    <span class="n">ret</span><span class="p">,</span>
+                    <span class="k">lambda</span> <span class="n">_x</span><span class="p">:</span> <span class="n">arrays_to_frontend</span><span class="p">(</span><span class="n">create_frontend_array</span><span class="p">)(</span><span class="n">_x</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_frontend_array</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="n">_x</span><span class="p">,</span>
+                    <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">_is_frontend_array</span><span class="p">(</span><span class="n">ret</span><span class="p">):</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">arrays_to_frontend</span><span class="p">(</span><span class="n">create_frontend_array</span><span class="p">)(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_ret_tuple</span><span class="p">:</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
+                    <span class="n">ret</span><span class="p">,</span>
+                    <span class="k">lambda</span> <span class="n">_x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span> <span class="k">else</span> <span class="n">_x</span><span class="p">,</span>
+                    <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">ret</span><span class="p">):</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
         <span class="n">out</span> <span class="o">=</span> <span class="n">ret</span>
         <span class="c1"># pass return value to out argument</span>
         <span class="c1"># check if passed reference is correctly updated</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;out&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span>
         <span class="k">if</span> <span class="n">is_ret_tuple</span><span class="p">:</span>
-            <span class="n">flatten_ret</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span>
-            <span class="n">flatten_out</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+                <span class="n">flatten_ret</span> <span class="o">=</span> <span class="n">flatten_frontend</span><span class="p">(</span>
+                    <span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">create_frontend_array</span>
+                <span class="p">)</span>
+                <span class="n">flatten_out</span> <span class="o">=</span> <span class="n">flatten_frontend</span><span class="p">(</span>
+                    <span class="n">ret</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">create_frontend_array</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">flatten_ret</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span>
+                <span class="n">flatten_out</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">ret_array</span><span class="p">,</span> <span class="n">out_array</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">flatten_ret</span><span class="p">,</span> <span class="n">flatten_out</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_inplace_support</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="n">ret_array</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="n">out_array</span><span class="o">.</span><span class="n">data</span>
+                <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_inplace_support</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">ret</span><span class="p">),</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+                <span class="p">):</span>
+                    <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+                        <span class="k">assert</span> <span class="n">ret_array</span><span class="o">.</span><span class="n">ivy_array</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="n">out_array</span><span class="o">.</span><span class="n">ivy_array</span><span class="o">.</span><span class="n">data</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="n">out</span><span class="o">.</span><span class="n">data</span>
                 <span class="k">assert</span> <span class="n">ret_array</span> <span class="ow">is</span> <span class="n">out_array</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_inplace_support</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="n">out</span><span class="o">.</span><span class="n">data</span>
+            <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_inplace_support</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">ret</span><span class="p">),</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+            <span class="p">):</span>
+                <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">ivy_array</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="n">out</span><span class="o">.</span><span class="n">ivy_array</span><span class="o">.</span><span class="n">data</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="n">out</span><span class="o">.</span><span class="n">data</span>
             <span class="k">assert</span> <span class="n">ret</span> <span class="ow">is</span> <span class="n">out</span>
     <span class="k">elif</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">inplace</span><span class="p">:</span>
         <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">_is_frontend_array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+            <span class="n">array_fn</span> <span class="o">=</span> <span class="n">_is_frontend_array</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">array_fn</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span>
         <span class="k">if</span> <span class="s2">&quot;inplace&quot;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">frontend_fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="c1"># the function provides optional inplace update</span>
             <span class="c1"># set inplace update to be True and check</span>
             <span class="c1"># if returned reference is inputted reference</span>
             <span class="c1"># and if inputted reference&#39;s content is correctly updated</span>
             <span class="n">copy_kwargs</span><span class="p">[</span><span class="s2">&quot;inplace&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">first_array</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">func_wrapper</span><span class="o">.</span><span class="n">_get_first_array</span><span class="p">(</span><span class="o">*</span><span class="n">copy_args</span><span class="p">,</span> <span class="o">**</span><span class="n">copy_kwargs</span><span class="p">)</span>
+            <span class="n">first_array</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">func_wrapper</span><span class="o">.</span><span class="n">_get_first_array</span><span class="p">(</span>
+                <span class="o">*</span><span class="n">copy_args</span><span class="p">,</span> <span class="n">array_fn</span><span class="o">=</span><span class="n">array_fn</span><span class="p">,</span> <span class="o">**</span><span class="n">copy_kwargs</span>
+            <span class="p">)</span>
             <span class="n">ret_</span> <span class="o">=</span> <span class="n">get_frontend_ret</span><span class="p">(</span><span class="n">frontend_fn</span><span class="p">,</span> <span class="o">*</span><span class="n">copy_args</span><span class="p">,</span> <span class="o">**</span><span class="n">copy_kwargs</span><span class="p">)</span>
             <span class="k">assert</span> <span class="n">first_array</span> <span class="ow">is</span> <span class="n">ret_</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># the function provides inplace update by default</span>
             <span class="c1"># check if returned reference is inputted reference</span>
-            <span class="n">first_array</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">func_wrapper</span><span class="o">.</span><span class="n">_get_first_array</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">first_array</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">func_wrapper</span><span class="o">.</span><span class="n">_get_first_array</span><span class="p">(</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">array_fn</span><span class="o">=</span><span class="n">array_fn</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
             <span class="n">ret_</span> <span class="o">=</span> <span class="n">get_frontend_ret</span><span class="p">(</span><span class="n">frontend_fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">assert</span> <span class="n">first_array</span> <span class="ow">is</span> <span class="n">ret_</span>
             <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">copy_args</span><span class="p">,</span> <span class="n">copy_kwargs</span>
-
     <span class="c1"># create NumPy args</span>
+
+    <span class="k">def</span> <span class="nf">arrays_to_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ivy_array</span><span class="p">)</span> <span class="k">if</span> <span class="n">_is_frontend_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
+
     <span class="n">args_np</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
-        <span class="n">args_ivy</span><span class="p">,</span>
-        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">,</span>
+        <span class="n">args_for_test</span><span class="p">,</span>
+        <span class="n">arrays_to_numpy</span><span class="p">,</span>
         <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">kwargs_np</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
-        <span class="n">kwargs_ivy</span><span class="p">,</span>
-        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">,</span>
+        <span class="n">kwargs_for_test</span><span class="p">,</span>
+        <span class="n">arrays_to_numpy</span><span class="p">,</span>
         <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1289,7 +1360,12 @@ document.write(`
             <span class="n">ivy</span><span class="o">.</span><span class="n">previous_backend</span><span class="p">()</span>
             <span class="k">raise</span> <span class="n">e</span>
 
-    <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">flatten_and_to_np</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">test_flags</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="p">:</span>
+        <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">flatten_frontend_to_np</span><span class="p">(</span>
+            <span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">create_frontend_array</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ret_np_flat</span> <span class="o">=</span> <span class="n">flatten_and_to_np</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span>
 
     <span class="c1"># assuming value test will be handled manually in the test function</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">test_values</span><span class="p">:</span>
@@ -1340,7 +1416,7 @@ document.write(`
     <span class="n">arg_np_vals</span><span class="p">,</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">c_arg_vals</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">args_np</span><span class="p">)</span>
     <span class="n">kwarg_np_vals</span><span class="p">,</span> <span class="n">kwargs_idxs</span><span class="p">,</span> <span class="n">c_kwarg_vals</span> <span class="o">=</span> <span class="n">_get_nested_np_arrays</span><span class="p">(</span><span class="n">kwargs_np</span><span class="p">)</span>
 
-    <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">kwargs_idxs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+    <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
         <span class="n">args_np</span><span class="o">=</span><span class="n">args_np</span><span class="p">,</span>
         <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_vals</span><span class="p">,</span>
         <span class="n">args_idxs</span><span class="o">=</span><span class="n">args_idxs</span><span class="p">,</span>
@@ -1400,7 +1476,7 @@ document.write(`
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">test_unsupported</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">kwargs_idxs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
             <span class="n">args_np</span><span class="o">=</span><span class="n">args_np</span><span class="p">,</span>
             <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">arg_np_vals</span><span class="p">,</span>
             <span class="n">args_idxs</span><span class="o">=</span><span class="n">args_idxs</span><span class="p">,</span>
@@ -1634,7 +1710,7 @@ document.write(`
     <span class="p">]</span>
 
     <span class="c1"># Create Args</span>
-    <span class="n">args_method</span><span class="p">,</span> <span class="n">kwargs_method</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+    <span class="n">args_method</span><span class="p">,</span> <span class="n">kwargs_method</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
         <span class="n">args_np</span><span class="o">=</span><span class="n">args_np_method</span><span class="p">,</span>
         <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">met_arg_np_vals</span><span class="p">,</span>
         <span class="n">args_idxs</span><span class="o">=</span><span class="n">met_args_idxs</span><span class="p">,</span>
@@ -1721,7 +1797,7 @@ document.write(`
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ivy</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="n">ground_truth_backend</span><span class="p">)</span>
         <span class="n">ivy</span><span class="o">.</span><span class="n">set_default_device</span><span class="p">(</span><span class="n">on_device</span><span class="p">)</span>
-        <span class="n">args_gt_constructor</span><span class="p">,</span> <span class="n">kwargs_gt_constructor</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+        <span class="n">args_gt_constructor</span><span class="p">,</span> <span class="n">kwargs_gt_constructor</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
             <span class="n">args_np</span><span class="o">=</span><span class="n">args_np_constructor</span><span class="p">,</span>
             <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">con_arg_np_vals</span><span class="p">,</span>
             <span class="n">args_idxs</span><span class="o">=</span><span class="n">con_args_idxs</span><span class="p">,</span>
@@ -1732,7 +1808,7 @@ document.write(`
             <span class="n">test_flags</span><span class="o">=</span><span class="n">init_flags</span><span class="p">,</span>
             <span class="n">on_device</span><span class="o">=</span><span class="n">on_device</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">args_gt_method</span><span class="p">,</span> <span class="n">kwargs_gt_method</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+        <span class="n">args_gt_method</span><span class="p">,</span> <span class="n">kwargs_gt_method</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
             <span class="n">args_np</span><span class="o">=</span><span class="n">args_np_method</span><span class="p">,</span>
             <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">met_arg_np_vals</span><span class="p">,</span>
             <span class="n">args_idxs</span><span class="o">=</span><span class="n">met_args_idxs</span><span class="p">,</span>
@@ -1744,7 +1820,7 @@ document.write(`
             <span class="n">on_device</span><span class="o">=</span><span class="n">on_device</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">ins_gt</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">class_name</span><span class="p">](</span><span class="o">*</span><span class="n">args_gt_constructor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_gt_constructor</span><span class="p">)</span>
-        <span class="c1"># ToDo : remove this when the handle_method can properly compute unsupported dtypes</span>
+        <span class="c1"># TODO this when the handle_method can properly compute unsupported dtypes</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
             <span class="n">dtype</span>
             <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">function_unsupported_dtypes</span><span class="p">(</span><span class="n">ins_gt</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">method_name</span><span class="p">))</span>
@@ -1836,10 +1912,13 @@ document.write(`
         <span class="n">ret_device</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dev</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
         <span class="k">assert</span> <span class="p">(</span>
             <span class="n">ret_device</span> <span class="o">==</span> <span class="n">ret_from_gt_device</span>
-        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;ground truth backend (</span><span class="si">{</span><span class="n">ground_truth_backend</span><span class="si">}</span><span class="s2">) returned array on device </span><span class="si">{</span><span class="n">ret_from_gt_device</span><span class="si">}</span><span class="s2"> but target backend (</span><span class="si">{</span><span class="n">ivy</span><span class="o">.</span><span class="n">backend</span><span class="si">}</span><span class="s2">) returned array on device </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;ground truth backend (</span><span class="si">{</span><span class="n">ground_truth_backend</span><span class="si">}</span><span class="s2">) returned array on device &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ret_from_gt_device</span><span class="si">}</span><span class="s2"> but target backend (</span><span class="si">{</span><span class="n">ivy</span><span class="o">.</span><span class="n">backend</span><span class="si">}</span><span class="s2">) returned array on &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;device </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">assert</span> <span class="p">(</span>
             <span class="n">ret_device</span> <span class="o">==</span> <span class="n">on_device</span>
-        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;device is set to </span><span class="si">{</span><span class="n">on_device</span><span class="si">}</span><span class="s2">, but ground truth produced array on </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;device is set to </span><span class="si">{</span><span class="n">on_device</span><span class="si">}</span><span class="s2">, but ground truth &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;produced array on </span><span class="si">{</span><span class="n">ret_device</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="c1"># assuming value test will be handled manually in the test function</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">test_values</span><span class="p">:</span>
@@ -1955,7 +2034,7 @@ document.write(`
     <span class="p">]</span>
 
     <span class="c1"># Create Args</span>
-    <span class="n">args_constructor</span><span class="p">,</span> <span class="n">kwargs_constructor</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+    <span class="n">args_constructor</span><span class="p">,</span> <span class="n">kwargs_constructor</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
         <span class="n">args_np</span><span class="o">=</span><span class="n">args_np_constructor</span><span class="p">,</span>
         <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">con_arg_np_vals</span><span class="p">,</span>
         <span class="n">args_idxs</span><span class="o">=</span><span class="n">con_args_idxs</span><span class="p">,</span>
@@ -2001,7 +2080,7 @@ document.write(`
     <span class="p">]</span>
 
     <span class="c1"># Create Args</span>
-    <span class="n">args_method</span><span class="p">,</span> <span class="n">kwargs_method</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
+    <span class="n">args_method</span><span class="p">,</span> <span class="n">kwargs_method</span> <span class="o">=</span> <span class="n">create_args_kwargs</span><span class="p">(</span>
         <span class="n">args_np</span><span class="o">=</span><span class="n">args_np_method</span><span class="p">,</span>
         <span class="n">arg_np_vals</span><span class="o">=</span><span class="n">met_arg_np_vals</span><span class="p">,</span>
         <span class="n">args_idxs</span><span class="o">=</span><span class="n">met_args_idxs</span><span class="p">,</span>
@@ -2193,6 +2272,7 @@ document.write(`
 <span class="k">def</span> <span class="nf">_get_nested_np_arrays</span><span class="p">(</span><span class="n">nest</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A helper function to search for a NumPy arrays in a nest</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    nest</span>
@@ -2203,6 +2283,7 @@ document.write(`
 <span class="sd">         Items found, indices, and total number of arrays found</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span>
+
     <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_index_nest</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
 
@@ -2232,8 +2313,7 @@ document.write(`
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Arguments, Keyword-arguments, number of arguments, and indexes on arguments and</span>
-<span class="sd">    keyword-arguments.</span>
+<span class="sd">    Backend specific arguments, keyword-arguments</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># create args</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">args_np</span><span class="p">,</span> <span class="n">to_mutable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -2250,7 +2330,7 @@ document.write(`
             <span class="n">kwarg_np_vals</span><span class="p">,</span> <span class="n">input_dtypes</span><span class="p">,</span> <span class="n">on_device</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg_np_vals</span><span class="p">)</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg_np_vals</span><span class="p">),</span> <span class="n">args_idxs</span><span class="p">,</span> <span class="n">kwargs_idxs</span></div>
+    <span class="k">return</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span></div>
 
 
 <div class="viewcode-block" id="convtrue"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.convtrue">[docs]</a><span class="k">def</span> <span class="nf">convtrue</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
@@ -2307,6 +2387,7 @@ document.write(`
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">ret</span><span class="p">,)</span>
     <span class="n">ret_idxs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_ivy_array</span><span class="p">)</span>
+
     <span class="c1"># no ivy array in the returned values, which means it returned scalar</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ret_idxs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">ret_idxs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">)</span>
@@ -2319,10 +2400,39 @@ document.write(`
     <span class="k">return</span> <span class="n">ret_flat</span></div>
 
 
+<div class="viewcode-block" id="flatten_frontend"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.flatten_frontend">[docs]</a><span class="k">def</span> <span class="nf">flatten_frontend</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a flattened numpy version of the frontend arrays in ret.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">ret</span><span class="p">,)</span>
+
+    <span class="n">ret_idxs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">_is_frontend_array</span><span class="p">)</span>
+
+    <span class="c1"># handle scalars</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ret_idxs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ret_idxs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">)</span>
+        <span class="n">ret_flat</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_index_nest</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ret_idxs</span><span class="p">)</span>
+        <span class="n">ret_flat</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">frontend_array_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ret_flat</span>
+        <span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ret_flat</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_index_nest</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ret_idxs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret_flat</span></div>
+
+
 <div class="viewcode-block" id="flatten_and_to_np"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.flatten_and_to_np">[docs]</a><span class="k">def</span> <span class="nf">flatten_and_to_np</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">ret</span><span class="p">):</span>
     <span class="c1"># flatten the return</span>
     <span class="n">ret_flat</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ret_flat</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="flatten_frontend_to_np"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.flatten_frontend_to_np">[docs]</a><span class="k">def</span> <span class="nf">flatten_frontend_to_np</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># flatten the return</span>
+
+    <span class="n">ret_flat</span> <span class="o">=</span> <span class="n">flatten_frontend</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">frontend_array_fn</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ivy_array</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ret_flat</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="get_ret_and_flattened_np_array"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.get_ret_and_flattened_np_array">[docs]</a><span class="k">def</span> <span class="nf">get_ret_and_flattened_np_array</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">test_compile</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2344,9 +2454,15 @@ document.write(`
     <span class="k">return</span> <span class="n">ret</span><span class="p">,</span> <span class="n">flatten_and_to_np</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_frontend_ret"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.get_frontend_ret">[docs]</a><span class="k">def</span> <span class="nf">get_frontend_ret</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="get_frontend_ret"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.get_frontend_ret">[docs]</a><span class="k">def</span> <span class="nf">get_frontend_ret</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="n">as_ivy_arrays</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">_frontend_array_to_ivy</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="p">{</span><span class="nb">tuple</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">as_ivy_arrays</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">_frontend_array_to_ivy</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="p">{</span><span class="nb">tuple</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">ret</span></div>
 
 
@@ -2412,6 +2528,31 @@ document.write(`
         <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">ivy_array</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">x</span>
+
+
+<div class="viewcode-block" id="args_to_frontend"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.args_to_frontend">[docs]</a><span class="k">def</span> <span class="nf">args_to_frontend</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">frontend_array_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">frontend_args</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">,</span>
+        <span class="n">arrays_to_frontend</span><span class="p">(</span><span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">frontend_array_fn</span><span class="p">),</span>
+        <span class="n">include_derived</span><span class="p">,</span>
+        <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">frontend_kwargs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span>
+        <span class="n">kwargs</span><span class="p">,</span>
+        <span class="n">arrays_to_frontend</span><span class="p">(</span><span class="n">frontend_array_fn</span><span class="o">=</span><span class="n">frontend_array_fn</span><span class="p">),</span>
+        <span class="n">include_derived</span><span class="p">,</span>
+        <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">frontend_args</span><span class="p">,</span> <span class="n">frontend_kwargs</span></div>
+
+
+<div class="viewcode-block" id="arrays_to_frontend"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.function_testing.html#ivy_tests.test_ivy.helpers.function_testing.arrays_to_frontend">[docs]</a><span class="k">def</span> <span class="nf">arrays_to_frontend</span><span class="p">(</span><span class="n">frontend_array_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_new_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">_is_frontend_array</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">frontend_array_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
+
+    <span class="k">return</span> <span class="n">_new_fn</span></div>
 </pre></div>
 
                 </article>
@@ -2427,16 +2568,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-
-</div></div>
               
             
           </div>

@@ -198,10 +198,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -489,6 +485,7 @@ document.write(`
     <span class="n">BuiltWithOutStrategy</span><span class="p">,</span>
     <span class="n">BuiltInplaceStrategy</span><span class="p">,</span>
     <span class="n">BuiltCompileStrategy</span><span class="p">,</span>
+    <span class="n">BuiltFrontendArrayStrategy</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ivy_tests.test_ivy.helpers.structs</span> <span class="kn">import</span> <span class="n">FrontendMethodData</span>
 <span class="kn">from</span> <span class="nn">ivy_tests.test_ivy.helpers.available_frameworks</span> <span class="kn">import</span> <span class="p">(</span>
@@ -854,6 +851,7 @@ document.write(`
     <span class="n">test_inplace</span><span class="o">=</span><span class="n">BuiltInplaceStrategy</span><span class="p">,</span>
     <span class="n">as_variable_flags</span><span class="o">=</span><span class="n">BuiltAsVariableStrategy</span><span class="p">,</span>
     <span class="n">native_array_flags</span><span class="o">=</span><span class="n">BuiltNativeArrayStrategy</span><span class="p">,</span>
+    <span class="n">generate_frontend_arrays</span><span class="o">=</span><span class="n">BuiltFrontendArrayStrategy</span><span class="p">,</span>
     <span class="o">**</span><span class="n">_given_kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -884,6 +882,10 @@ document.write(`
 <span class="sd">    native_array_flags</span>
 <span class="sd">        A search strategy that generates a list of boolean flags for array inputs to be</span>
 <span class="sd">        passed as a native array</span>
+
+<span class="sd">    generate_frontend_arrays</span>
+<span class="sd">        A search strategy that generates a list of boolean flags for array inputs to</span>
+<span class="sd">        be frontend array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fn_tree</span> <span class="o">=</span> <span class="s2">&quot;ivy.functional.frontends.&quot;</span> <span class="o">+</span> <span class="n">fn_tree</span>
     <span class="k">if</span> <span class="n">aliases</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -902,6 +904,7 @@ document.write(`
             <span class="n">inplace</span><span class="o">=</span><span class="n">test_inplace</span><span class="p">,</span>
             <span class="n">as_variable</span><span class="o">=</span><span class="n">as_variable_flags</span><span class="p">,</span>
             <span class="n">native_arrays</span><span class="o">=</span><span class="n">native_array_flags</span><span class="p">,</span>
+            <span class="n">generate_frontend_arrays</span><span class="o">=</span><span class="n">generate_frontend_arrays</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_wrapper</span><span class="p">(</span><span class="n">test_fn</span><span class="p">):</span>
@@ -1190,16 +1193,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-
-</div></div>
               
             
           </div>
