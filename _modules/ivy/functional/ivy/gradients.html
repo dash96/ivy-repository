@@ -308,8 +308,8 @@ document.write(`
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data classes</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">Array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">ivy.data_classes.array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">ivy.data_classes.container</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Framework classes</span></p>
 <ul class="nav bd-sidenav">
@@ -359,47 +359,47 @@ document.write(`
         </p>
         <ul class="nav bd-sidenav">
             <li class="toctree-l1">
-                <a class="reference external" href="/ivy">
+                <a class="reference external" href="/docs/ivy">
                     Ivy
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/mech">
+                <a class="reference external" href="/docs/mech">
                     Ivy mech
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/vision">
+                <a class="reference external" href="/docs/vision">
                     Ivy vision
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/robot">
+                <a class="reference external" href="/docs/robot">
                     Ivy robot
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/gym">
+                <a class="reference external" href="/docs/gym">
                     Ivy gym
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/memory">
+                <a class="reference external" href="/docs/memory">
                     Ivy memory
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/builder">
+                <a class="reference external" href="/docs/builder">
                     Ivy builder
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/models">
+                <a class="reference external" href="/docs/models">
                     Ivy models
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/ecosystem">
+                <a class="reference external" href="/docs/ecosystem">
                     Ivy ecosystem
                 </a>
             </li>
@@ -530,8 +530,7 @@ document.write(`
     <span class="c1"># To make sure that only the required arrays are converted to native arrays</span>
     <span class="n">xs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_ivy</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">xs_grad_idxs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">xs_required</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_index_nest</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">xs_grad_idxs</span><span class="p">)</span>
-        <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span><span class="n">xs_required</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_native</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map_nest_at_indices</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">xs_grad_idxs</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_native</span><span class="p">,</span> <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">xs</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_map</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_native</span><span class="p">,</span> <span class="n">include_derived</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shallow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -795,8 +794,8 @@ document.write(`
 <span class="c1"># Gradient Mode #</span>
 
 <span class="c1"># noinspection PyShadowingNames</span>
-<div class="viewcode-block" id="with_grads"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.with_grads">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="with_grads"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.with_grads">[docs]</a><span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">with_grads</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">with_grads</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Enter a nested code space where gradients are computed. This method</span>
@@ -846,8 +845,8 @@ document.write(`
 
 
 <span class="c1"># noinspection PyShadowingNames</span>
-<div class="viewcode-block" id="set_with_grads"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.set_with_grads">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="set_with_grads"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.set_with_grads">[docs]</a><span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">set_with_grads</span><span class="p">(</span><span class="n">with_grads</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method adds the with_grads component to the global list with_grads_stack</span>
@@ -880,8 +879,8 @@ document.write(`
     <span class="n">with_grads_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">with_grads</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="unset_with_grads"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.unset_with_grads">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="unset_with_grads"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.unset_with_grads">[docs]</a><span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">unset_with_grads</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method deletes the last with_grads component from the global list</span>
@@ -908,12 +907,12 @@ document.write(`
         <span class="n">with_grads_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="stop_gradient"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.stop_gradient">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="stop_gradient"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.stop_gradient">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">stop_gradient</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1172,10 +1171,10 @@ document.write(`
 <span class="c1"># Optimizer Steps #</span>
 
 
-<div class="viewcode-block" id="adam_step"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.adam_step">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_array_like_without_promotion</span>
+<div class="viewcode-block" id="adam_step"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.adam_step">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">adam_step</span><span class="p">(</span>
     <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">mw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1326,10 +1325,10 @@ document.write(`
 <span class="c1"># Optimizer Updates #</span>
 
 
-<div class="viewcode-block" id="optimizer_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.optimizer_update">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_array_like_without_promotion</span>
+<div class="viewcode-block" id="optimizer_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.optimizer_update">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">optimizer_update</span><span class="p">(</span>
     <span class="n">w</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">effective_grad</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1449,10 +1448,10 @@ document.write(`
     <span class="k">return</span> <span class="n">w</span></div>
 
 
-<div class="viewcode-block" id="gradient_descent_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.gradient_descent_update">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_array_like_without_promotion</span>
+<div class="viewcode-block" id="gradient_descent_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.gradient_descent_update">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">gradient_descent_update</span><span class="p">(</span>
     <span class="n">w</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1542,10 +1541,10 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">optimizer_update</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">dcdw</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="lars_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.lars_update">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_array_like_without_promotion</span>
+<div class="viewcode-block" id="lars_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.lars_update">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">lars_update</span><span class="p">(</span>
     <span class="n">w</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1593,10 +1592,10 @@ document.write(`
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="adam_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.adam_update">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_array_like_without_promotion</span>
+<div class="viewcode-block" id="adam_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.adam_update">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">adam_update</span><span class="p">(</span>
     <span class="n">w</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1758,10 +1757,10 @@ document.write(`
 <span class="n">adam_update</span><span class="o">.</span><span class="n">out_index</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<div class="viewcode-block" id="lamb_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.lamb_update">[docs]</a><span class="nd">@handle_array_function</span>
-<span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_array_like_without_promotion</span>
+<div class="viewcode-block" id="lamb_update"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.gradients.html#ivy.functional.ivy.gradients.lamb_update">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">lamb_update</span><span class="p">(</span>
     <span class="n">w</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>

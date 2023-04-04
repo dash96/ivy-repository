@@ -308,8 +308,8 @@ document.write(`
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data classes</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">Array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">ivy.data_classes.array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">ivy.data_classes.container</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Framework classes</span></p>
 <ul class="nav bd-sidenav">
@@ -359,47 +359,47 @@ document.write(`
         </p>
         <ul class="nav bd-sidenav">
             <li class="toctree-l1">
-                <a class="reference external" href="/ivy">
+                <a class="reference external" href="/docs/ivy">
                     Ivy
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/mech">
+                <a class="reference external" href="/docs/mech">
                     Ivy mech
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/vision">
+                <a class="reference external" href="/docs/vision">
                     Ivy vision
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/robot">
+                <a class="reference external" href="/docs/robot">
                     Ivy robot
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/gym">
+                <a class="reference external" href="/docs/gym">
                     Ivy gym
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/memory">
+                <a class="reference external" href="/docs/memory">
                     Ivy memory
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/builder">
+                <a class="reference external" href="/docs/builder">
                     Ivy builder
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/models">
+                <a class="reference external" href="/docs/models">
                     Ivy models
                 </a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="/ecosystem">
+                <a class="reference external" href="/docs/ecosystem">
                     Ivy ecosystem
                 </a>
             </li>
@@ -470,13 +470,6 @@ document.write(`
 
 
 <span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
-<span class="k">def</span> <span class="nf">_gradient_strategy</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">test_globals</span><span class="o">.</span><span class="n">CURRENT_BACKEND</span><span class="p">()</span><span class="o">.</span><span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;numpy&quot;</span><span class="p">:</span>
-        <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">just</span><span class="p">(</span><span class="kc">False</span><span class="p">))</span>
-    <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">())</span>
-
-
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_as_varaible_strategy</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="k">if</span> <span class="p">(</span>
         <span class="n">test_globals</span><span class="o">.</span><span class="n">CURRENT_BACKEND</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">test_globals</span><span class="o">.</span><span class="n">_Notsetval</span>
@@ -496,22 +489,14 @@ document.write(`
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 
 
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
-<span class="k">def</span> <span class="nf">_compile_strategy</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>  <span class="c1"># TODO remove later when paddle is supported</span>
-    <span class="k">if</span> <span class="n">test_globals</span><span class="o">.</span><span class="n">CURRENT_BACKEND</span><span class="p">()</span><span class="o">.</span><span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;paddle&quot;</span><span class="p">:</span>
-        <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">just</span><span class="p">(</span><span class="kc">False</span><span class="p">))</span>
-    <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">())</span>
-
-
 <span class="n">BuiltNativeArrayStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">BuiltAsVariableStrategy</span> <span class="o">=</span> <span class="n">_as_varaible_strategy</span><span class="p">()</span>
 <span class="n">BuiltContainerStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">BuiltInstanceStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
 <span class="n">BuiltInplaceStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">just</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">BuiltGradientStrategy</span> <span class="o">=</span> <span class="n">_gradient_strategy</span><span class="p">()</span>
+<span class="n">BuiltGradientStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
 <span class="n">BuiltWithOutStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
-<span class="n">BuiltCompileStrategy</span> <span class="o">=</span> <span class="n">_compile_strategy</span><span class="p">()</span>
-<span class="n">BuiltFrontendArrayStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
+<span class="n">BuiltCompileStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
 
 
 <span class="n">flags_mapping</span> <span class="o">=</span> <span class="p">{</span>
@@ -635,14 +620,12 @@ document.write(`
         <span class="n">inplace</span><span class="p">,</span>
         <span class="n">as_variable</span><span class="p">,</span>
         <span class="n">native_arrays</span><span class="p">,</span>
-        <span class="n">generate_frontend_arrays</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_positional_args</span> <span class="o">=</span> <span class="n">num_positional_args</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">with_out</span> <span class="o">=</span> <span class="n">with_out</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="o">=</span> <span class="n">inplace</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">native_arrays</span> <span class="o">=</span> <span class="n">native_arrays</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">as_variable</span> <span class="o">=</span> <span class="n">as_variable</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_frontend_arrays</span> <span class="o">=</span> <span class="n">generate_frontend_arrays</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">as_variable</span> <span class="o">=</span> <span class="n">as_variable</span></div>
 
 <div class="viewcode-block" id="FrontendFunctionTestFlags.apply_flags"><a class="viewcode-back" href="../../../../docs/testing/helpers/ivy_tests.test_ivy.helpers.test_parameter_flags.html#ivy_tests.test_ivy.helpers.test_parameter_flags.FrontendFunctionTestFlags.apply_flags">[docs]</a>    <span class="k">def</span> <span class="nf">apply_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args_to_iterate</span><span class="p">,</span> <span class="n">input_dtypes</span><span class="p">,</span> <span class="n">on_device</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
@@ -662,7 +645,6 @@ document.write(`
             <span class="sa">f</span><span class="s2">&quot;inplace=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">inplace</span><span class="si">}</span><span class="s2">. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;native_arrays=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">native_arrays</span><span class="si">}</span><span class="s2">. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;as_variable=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">as_variable</span><span class="si">}</span><span class="s2">. &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;generate_frontend_arrays=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="si">}</span><span class="s2">. &quot;</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -678,7 +660,6 @@ document.write(`
     <span class="n">inplace</span><span class="p">,</span>
     <span class="n">as_variable</span><span class="p">,</span>
     <span class="n">native_arrays</span><span class="p">,</span>
-    <span class="n">generate_frontend_arrays</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">st</span><span class="o">.</span><span class="n">builds</span><span class="p">(</span>
@@ -688,7 +669,6 @@ document.write(`
             <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
             <span class="n">as_variable</span><span class="o">=</span><span class="n">as_variable</span><span class="p">,</span>
             <span class="n">native_arrays</span><span class="o">=</span><span class="n">native_arrays</span><span class="p">,</span>
-            <span class="n">generate_frontend_arrays</span><span class="o">=</span><span class="n">generate_frontend_arrays</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">)</span></div>
 
