@@ -308,8 +308,8 @@ document.write(`
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data classes</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">ivy.data_classes.array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">ivy.data_classes.container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">Container</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Framework classes</span></p>
 <ul class="nav bd-sidenav">
@@ -490,10 +490,10 @@ document.write(`
 <span class="c1"># ------#</span>
 
 
-<div class="viewcode-block" id="cross_entropy"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.losses.html#ivy.functional.ivy.losses.cross_entropy">[docs]</a><span class="nd">@handle_nestable</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="cross_entropy"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.losses.html#ivy.functional.ivy.losses.cross_entropy">[docs]</a><span class="nd">@handle_array_function</span>
 <span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span>
     <span class="n">true</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">pred</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -545,10 +545,10 @@ document.write(`
     <span class="k">return</span> <span class="n">_reduce_loss</span><span class="p">(</span><span class="n">reduction</span><span class="p">,</span> <span class="n">log_pred</span> <span class="o">*</span> <span class="n">true</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="binary_cross_entropy"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.losses.html#ivy.functional.ivy.losses.binary_cross_entropy">[docs]</a><span class="nd">@handle_nestable</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="binary_cross_entropy"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.losses.html#ivy.functional.ivy.losses.binary_cross_entropy">[docs]</a><span class="nd">@handle_array_function</span>
 <span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">binary_cross_entropy</span><span class="p">(</span>
     <span class="n">true</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">pred</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -652,10 +652,10 @@ document.write(`
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="sparse_cross_entropy"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.losses.html#ivy.functional.ivy.losses.sparse_cross_entropy">[docs]</a><span class="nd">@handle_nestable</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="sparse_cross_entropy"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.losses.html#ivy.functional.ivy.losses.sparse_cross_entropy">[docs]</a><span class="nd">@handle_array_function</span>
 <span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">sparse_cross_entropy</span><span class="p">(</span>
     <span class="n">true</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">pred</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
