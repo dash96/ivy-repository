@@ -308,8 +308,8 @@ document.write(`
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data classes</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">Array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.array.html">ivy.data_classes.array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/data_classes/ivy.data_classes.container.html">ivy.data_classes.container</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Framework classes</span></p>
 <ul class="nav bd-sidenav">
@@ -729,9 +729,9 @@ document.write(`
 <span class="c1"># Retrieval</span>
 
 
-<div class="viewcode-block" id="dev"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.device.html#ivy.functional.ivy.device.dev">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
-<span class="nd">@handle_nestable</span>
+<div class="viewcode-block" id="dev"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.device.html#ivy.functional.ivy.device.dev">[docs]</a><span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">dev</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">as_native</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">]:</span>
@@ -1278,9 +1278,9 @@ document.write(`
 
 <div class="viewcode-block" id="to_device"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.device.html#ivy.functional.ivy.device.to_device">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">to_device</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">device</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">],</span>
